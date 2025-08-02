@@ -2,6 +2,7 @@ using PlazmaGames.Animation;
 using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.UI;
+using Recursive.MonoSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,12 +16,14 @@ namespace Recursive
         [SerializeField] private UIMonoSystem _uiSystem;
         [SerializeField] private AnimationMonoSystem _animSystem;
         [SerializeField] private AudioMonoSystem _audioSystem;
+        [SerializeField] private InputMonoSystem _inputSystem;
 
         private void AttachMonoSystems()
         {
             AddMonoSystem<UIMonoSystem, IUIMonoSystem>(_uiSystem);
             AddMonoSystem<AnimationMonoSystem, IAnimationMonoSystem>(_animSystem);
             AddMonoSystem<AudioMonoSystem, IAudioMonoSystem>(_audioSystem);
+            AddMonoSystem<InputMonoSystem, IInputMonoSystem>(_inputSystem);
         }
 
         public override string GetApplicationName()
