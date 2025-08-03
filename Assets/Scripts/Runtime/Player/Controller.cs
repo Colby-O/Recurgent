@@ -1,7 +1,9 @@
 using System;
 using PlazmaGames.Attribute;
 using PlazmaGames.Core;
+using PlazmaGames.UI;
 using Recursive.MonoSystem;
+using Recursive.UI;
 using UnityEngine;
 
 namespace Recursive.Player
@@ -11,6 +13,7 @@ namespace Recursive.Player
     {
         [Header("References")]
         [SerializeField] private CharacterController _controller;
+        [SerializeField] private AudioSource _as;
         [SerializeField] private Transform _head;
         [SerializeField] private Transform _feet;
         [SerializeField] private PlayerSettings _settings;
@@ -43,6 +46,8 @@ namespace Recursive.Player
 
         private void Jump()
         {
+            if (GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
+
             if (IsGrounded()) _velY = _settings.JumpForce;
         }
 
@@ -101,6 +106,21 @@ namespace Recursive.Player
             ProcessLook();
             ProcessMovement();
             ProcessGravity();
+
+            Vector3 speed = _movementSpeed;
+            speed.y = 0;
+            if (speed.magnitude > 0.01f && IsGrounded())
+            {
+                if (!_as.isPlaying)
+                {
+                    _as.time = UnityEngine.Random.Range(0, _as.clip.length);
+                    _as.Play();
+                }
+            }
+            else
+            {
+                _as.Stop();
+            }
 
             _controller.Move(transform.TransformDirection(_movementSpeed * Time.deltaTime));
         }

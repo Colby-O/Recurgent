@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06264d2f54d6c884eb47ac2cbc4ec893, type: 3}
+  m_Name: Level1Dialogue
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: Welcome to the Continuum Research Center.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: 'You have been selected to participate in a groundbreaking study testing
+          the capabilities of a device known as the ChronoKey. '
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: The ChronoKey is an experimental tool designed to give its user control
+          over time itself.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: The device allows you to create up to four temporal replicas of yourself,
+          known as Recurgents. These replicas will replay your recorded actions precisely
+          as they occurred.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: 'Recurgents are bound to the same laws of physics as you and I. As
+          such improper use of Recurgents can create paradoxes that can result in
+          their destruction. '
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: 'So be sure to carefully plan your recording throughout the test to
+          prevent Recurgents from traveling through barriers and what not. '
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: To create a Recurgent, select a memory slot by pressing 1, 2, 3, or
+          4 on your keyboard.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: 'Once a slot is selected, click the Right Mouse Button to begin recording.
+          Please note: initiating a recording will reset the test chamber to its
+          original state.'
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: To restart a chamber without recording a Recurgent, press R at any
+          time.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0
+  - avatarName: Dr. Elara Voss
+    msg:
+      list:
+      - Key: 0
+        Value: Proceed carefully, and good luck.
+      keyCollision: 0
+    dialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
+    waitDelayOverride: 0
+    typeSpeedOverride: 0

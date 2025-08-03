@@ -1,6 +1,8 @@
+using PlazmaGames.Audio;
+using PlazmaGames.Core;
+using Recursive.Components;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using Recursive.Components;
 using UnityEngine;
 
 namespace Recursive
@@ -10,6 +12,7 @@ namespace Recursive
         [SerializeField] private GameObject _actuator;
         [SerializeField] private GameObject _model;
         [SerializeField] private bool _defaultState;
+        [SerializeField] private AudioClip _onSolveClip;
 
         private void OnEnable() => _actuator.GetComponent<IActuator>().Bind(SetState);
         private void OnDisable() => _actuator.GetComponent<IActuator>().Unbind(SetState);
@@ -27,6 +30,7 @@ namespace Recursive
 
         private void Open()
         {
+            if (_onSolveClip) GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_onSolveClip, PlazmaGames.Audio.AudioType.Sfx, false, true);
             _model.SetActive(false);
         }
 

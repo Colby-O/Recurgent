@@ -19,6 +19,11 @@ namespace Recursive
         [SerializeField] private InputMonoSystem _inputSystem;
         [SerializeField] private RecorderMonoSystem _recorderSystem;
         [SerializeField] private GameplayMonoSystem _gameplaySystem;
+        [SerializeField] private DialogueMonoSystem _dialogueSystem;
+
+        [SerializeField] private DialogueSO _test;
+
+        public static bool IsPaused => false;
 
         private void AttachMonoSystems()
         {
@@ -28,6 +33,7 @@ namespace Recursive
             AddMonoSystem<InputMonoSystem, IInputMonoSystem>(_inputSystem);
             AddMonoSystem<RecorderMonoSystem, IRecorderMonoSystem>(_recorderSystem);
             AddMonoSystem<GameplayMonoSystem, IGameplayMonoSystem>(_gameplaySystem);
+            AddMonoSystem<DialogueMonoSystem, IDialogueMonoSystem>(_dialogueSystem);
         }
 
         public override string GetApplicationName()
@@ -64,7 +70,7 @@ namespace Recursive
 
         private void Start()
         {
-
+            _dialogueSystem.Load(_test);
         }
 
         private void OnEnable()

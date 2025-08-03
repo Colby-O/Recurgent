@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &409369570970846571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669569058528871695}
+  - component: {fileID: 6664032657223321952}
+  m_Layer: 0
+  m_Name: Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669569058528871695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409369570970846571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7377806647755845956}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6664032657223321952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409369570970846571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c37cd81b25c59e488f66f7a5f4f1376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultDialogueEvent: {fileID: 11400000, guid: 7afaa3cd97ace0043be80d38bd1e3cd1, type: 2}
 --- !u!1 &1223386040832944780
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +245,7 @@ Transform:
   - {fileID: 7803081082373806023}
   - {fileID: 7822120612279476397}
   - {fileID: 672996509396704333}
+  - {fileID: 669569058528871695}
   m_Father: {fileID: 1221539595083670426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7595372660671692866
@@ -385,6 +431,8 @@ MonoBehaviour:
   _inputSystem: {fileID: 2412625702210654780}
   _recorderSystem: {fileID: 2300401493937531518}
   _gameplaySystem: {fileID: 6000931050187581948}
+  _dialogueSystem: {fileID: 6664032657223321952}
+  _test: {fileID: 11400000, guid: f9690bb734c8a354fbc4d6dc51bf9d71, type: 2}
 --- !u!1 &8099245422208538691
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +483,7 @@ MonoBehaviour:
   _overallSound: 1
   _ambientSound: 1
   _sfxSound: 1
-  _musicSound: 1
+  _musicSound: 0.5
   _musicSounds: []
   _ambientSounds: []
   _sfxSounds: []
@@ -487,12 +535,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 0b8ab2ef37fcb9f4bbe1fb7494da2862, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0b8ab2ef37fcb9f4bbe1fb7494da2862, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
