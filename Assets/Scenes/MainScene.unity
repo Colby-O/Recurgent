@@ -926,6 +926,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: ====UI====
       objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821287758250638351, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6983455011163331956, guid: ae69af7d19a4d2542ae55839d7c13188, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1338,7 +1362,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e568dd9e40d24b14d960740026d35f19, type: 2}
+  - {fileID: 2100000, guid: 2cecc6d78197ffc4cb0404693045c47c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1870,7 +1894,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2cecc6d78197ffc4cb0404693045c47c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1909,8 +1933,8 @@ Transform:
   m_GameObject: {fileID: 1055180433}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.43955, y: 0.146, z: -0.8213701}
-  m_LocalScale: {x: 0.20091, y: 1, z: 1}
+  m_LocalPosition: {x: 2.8634, y: 0.146, z: -0.8213701}
+  m_LocalScale: {x: 1.0485694, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 872340578}
