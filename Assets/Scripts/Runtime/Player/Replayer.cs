@@ -4,6 +4,7 @@ namespace Recursive.Player
 {
     public class Replayer : MonoBehaviour
     {
+        [SerializeField] private MeshRenderer _mr;
         private Recording _recording;
         private Stopwatch _stopwatch = new();
 
@@ -45,6 +46,12 @@ namespace Recursive.Player
             float t = (_stopwatch.Now() - _prev.Time) / (_next.Time - _prev.Time);
             transform.position = Vector3.Lerp(_prev.Position, _next.Position, t);
             transform.rotation = Quaternion.Lerp(_prev.Rotation, _next.Rotation, t);
+        }
+
+        public void SetColor(Color cloneColor)
+        {
+            float a = _mr.materials[1].color.a;
+            _mr.materials[1].color = new Color(cloneColor.r, cloneColor.g, cloneColor.b, a);
         }
     }
 }

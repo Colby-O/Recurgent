@@ -796,3 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420f4320067f1e353869214008336a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cloneColors:
+  - {r: 1, g: 0.299397, b: 0.299397, a: 0}
+  - {r: 0.35615122, g: 0.3234725, b: 1, a: 0}
+  - {r: 0.39619648, g: 1, b: 0.40339467, a: 0}
+  - {r: 0.9796542, g: 0.99579376, b: 0.10492879, a: 0}

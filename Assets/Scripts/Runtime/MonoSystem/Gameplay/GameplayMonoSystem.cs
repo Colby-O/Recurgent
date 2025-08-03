@@ -9,6 +9,8 @@ namespace Recursive.MonoSystem
 {
     public class GameplayMonoSystem : MonoBehaviour, IGameplayMonoSystem
     {
+        [SerializeField] private Color[] _cloneColors;
+        
         private Replayer _clonePrefab;
 
         private Transform _levelDoors;
@@ -91,16 +93,24 @@ namespace Recursive.MonoSystem
             Debug.Log("Restart Level!");
             _level.Components.ForEach(c => c.ResetState());
             if (movePlayer) _player.SetTransform(_level.StartPosition);
-            Recording[] recordings = GameManager.GetMonoSystem<IRecorderMonoSystem>().ActiveRecordings();
+            Recording[] recordings = GameManager.GetMonoSystem<IRecorderMonoSystem>().Recordings();
 
             RemoveClones();
 
+            int cloneId = 0;
             foreach (Recording rec in recordings)
             {
+                if (rec == null)
+                {
+                    cloneId += 1;
+                    continue;
+                }
                 Replayer rp = GameObject.Instantiate(_clonePrefab);
+                rp.SetColor(_cloneColors[cloneId]);
                 rp.SetRecording(rec);
                 rp.Play();
                 _clones.Add(rp);
+                cloneId += 1;
             }
             
         }

@@ -20,6 +20,7 @@ namespace Recursive.MonoSystem
         private GameView _gameView;
 
         public Recording[] ActiveRecordings() => _recordings.Where(r => r != null).ToArray();
+        public Recording[] Recordings() => _recordings;
 
         public void SelectSlot(int id)
         {
