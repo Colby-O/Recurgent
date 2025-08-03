@@ -32,7 +32,7 @@ namespace Recursive.Player
 			else EndRecord();
 		}
 
-		private void StartRecord()
+		public void StartRecord()
         {
             _recording.Clear();
 
@@ -45,7 +45,7 @@ namespace Recursive.Player
 			_isRecording = true;
 		}
 
-		private void EndRecord()
+		public void EndRecord()
 		{
 			_isRecording = false;
 
@@ -54,15 +54,10 @@ namespace Recursive.Player
             _gameView.DisableTimer();
             _gameView.SetTimer(0f);
 
-            Replayer rp = GameObject.Instantiate(_clonePrefab).transform.GetComponent<Replayer>();
-            rp.SetRecording(_recorderMS.GetSelectedRecording());
-            rp.Play();
         }
 
 		private void Awake()
 		{
-			GameManager.GetMonoSystem<IInputMonoSystem>().LeftMouseAction.AddListener(Record);
-
 //            _frames = new Frame[_bufferSize];
 //            for (int i = 0; i < _bufferSize; i++) _frames[i] = new Frame();
 		}
@@ -85,5 +80,7 @@ namespace Recursive.Player
 				_recording.AddFrame(new Frame(Time.time - _recordStartTime, transform.position, transform.rotation));
 			}
 		}
-	}
+
+        public bool IsRecording() => _isRecording;
+    }
 }

@@ -3,6 +3,7 @@ using PlazmaGames.UI;
 using Recursive.Player;
 using Recursive.UI;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Recursive.MonoSystem
@@ -15,6 +16,8 @@ namespace Recursive.MonoSystem
         [SerializeField] private int _selectedSlot = 0;
 
         private GameView _gameView;
+
+        public Recording[] ActiveRecordings() => _recordings.Where(r => r != null).ToArray();
 
         public void SelectSlot(int id)
         {
