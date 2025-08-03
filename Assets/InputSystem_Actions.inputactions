@@ -54,7 +54,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -135,6 +135,15 @@
                     "name": "Slot4",
                     "type": "Button",
                     "id": "c4f5b44e-2343-4d86-81ef-19a5d2d83968",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "c70b1cab-a710-4918-8460-7aa4fe15578b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -590,6 +599,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Slot4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06f3147c-a190-44e9-a78b-91f7fe4f2f76",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

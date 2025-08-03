@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Recursive
 {
-    public class ActuatorGroup : MonoBehaviour, IActuator
+    public class ActuatorGroup : MonoBehaviour, IActuator, Components.IComponent
     {
         private enum Type
         {
@@ -27,6 +27,12 @@ namespace Recursive
         public void Unbind(Action<bool> callback) => _callbacks.Remove(callback);
 
         [SerializeField, ReadOnly] private int _onCount = 0;
+        
+        public void ResetState()
+        {
+            _onCount = 0;
+            _state = false;
+        }
 
         private void OnEnable()
         {
@@ -41,7 +47,7 @@ namespace Recursive
         private void SetState(bool state)
         {
             if (state) _onCount += 1;
-            else _onCount -= 1;
+            else if (_onCount > 0) _onCount -= 1;
             
             bool res;
 
@@ -71,6 +77,5 @@ namespace Recursive
                 _state = res;
             }
         }
-
     }
 }

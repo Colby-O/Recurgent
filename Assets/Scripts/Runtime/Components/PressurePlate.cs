@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using Recursive.Components;
 using UnityEngine;
+using IComponent = System.ComponentModel.IComponent;
 
 namespace Recursive
 {
-    public class PressurePlate : MonoBehaviour, IActuator
+    public class PressurePlate : MonoBehaviour, IActuator, Components.IComponent
     {
         private List<Action<bool>> _callbacks = new();
         private int _interactorsInside = 0;
@@ -22,6 +23,11 @@ namespace Recursive
             _callbacks.ForEach(c => c.Invoke(false));
         }
         
+        public void ResetState()
+        {
+            _interactorsInside = 0;
+        }
+        
         private void OnTriggerEnter(Collider col)
         {
             if (col.CompareTag("Interactor"))
@@ -33,11 +39,12 @@ namespace Recursive
 
         private void OnTriggerExit(Collider col)
         {
-            if (col.CompareTag("Interactor"))
+            if (col.CompareTag("Interactor") && _interactorsInside > 0)
             {
                 _interactorsInside -= 1;
                 if (_interactorsInside == 0) SetOff();
             }
         }
+
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Recursive
 {
-    public class Door : MonoBehaviour
+    public class Door : MonoBehaviour, Components.IComponent
     {
         [SerializeField] private GameObject _actuator;
         [SerializeField] private GameObject _model;
@@ -18,6 +18,11 @@ namespace Recursive
             if (state) Open();
             else Close();
         }
+        
+        public void ResetState()
+        {
+            _model.SetActive(true);
+        }
 
         private void Open()
         {
@@ -28,5 +33,6 @@ namespace Recursive
         {
             _model.SetActive(true);
         }
+
     }
 }

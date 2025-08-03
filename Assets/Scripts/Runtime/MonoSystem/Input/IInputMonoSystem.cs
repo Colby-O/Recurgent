@@ -10,6 +10,7 @@ namespace Recursive.MonoSystem
         public UnityEvent InteractCallback { get; }
         public UnityEvent LeftMouseAction { get; }
         public UnityEvent RightMouseAction { get; }
+        public UnityEvent RestartAction { get; }
 
         public UnityEvent Slot1Action { get; }
         public UnityEvent Slot2Action { get; }
