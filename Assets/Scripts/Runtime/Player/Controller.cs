@@ -84,6 +84,8 @@ namespace Recursive.Player
 
         private void Awake()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             if (!_controller) _controller = GetComponent<CharacterController>();
             _input = GameManager.GetMonoSystem<IInputMonoSystem>();
 
