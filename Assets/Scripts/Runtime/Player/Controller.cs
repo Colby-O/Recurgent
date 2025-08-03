@@ -1,3 +1,4 @@
+using System;
 using PlazmaGames.Attribute;
 using PlazmaGames.Core;
 using Recursive.MonoSystem;
@@ -117,6 +118,14 @@ namespace Recursive.Player
             _smoothedYRot = trans.eulerAngles.y;
             _smoothedXRot = trans.eulerAngles.x;
             _controller.enabled = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Exit"))
+            {
+                GameManager.GetMonoSystem<IGameplayMonoSystem>().NextLevel();
+            }
         }
     }
 }

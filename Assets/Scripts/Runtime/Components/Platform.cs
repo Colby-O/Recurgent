@@ -11,6 +11,7 @@ namespace Recursive
         [SerializeField] protected float _speed;
         [SerializeField] protected List<Transform> _path;
         [SerializeField] protected GameObject _actuator;
+        [SerializeField] protected bool _initialState;
 
         [SerializeField, ReadOnly] protected Transform _currentTarget;
         [SerializeField, ReadOnly] protected Transform _nextTarget;
@@ -44,8 +45,9 @@ namespace Recursive
             _index = 0;
             _t = 0;
             _direction = 1;
-            _isActivated = false;
+            _isActivated = _initialState;
             transform.position = _initialPosition;
+            if (_initialState) Activate();
         }
 
         protected abstract void NextTarget();

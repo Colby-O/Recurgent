@@ -12,6 +12,8 @@ namespace Recursive.MonoSystem
     {
         private const int NUMBER_OF_SLOTS = 4;
 
+        private Player.Recorder _recorder;
+
         [SerializeField] private Recording[] _recordings;
         [SerializeField] private int _selectedSlot = 0;
 
@@ -21,7 +23,7 @@ namespace Recursive.MonoSystem
 
         public void SelectSlot(int id)
         {
-            if (id >= 4) return;
+            if (id >= 4 || _recorder.IsRecording()) return;
 
             _selectedSlot = id;
             _gameView.SelectSlot(id);
@@ -55,6 +57,7 @@ namespace Recursive.MonoSystem
 
         private void Start()
         {
+            _recorder = GameObject.FindAnyObjectByType<Player.Recorder>();
             _gameView = GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>();
             ClearAllSlots();
 

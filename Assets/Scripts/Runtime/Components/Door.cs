@@ -9,6 +9,7 @@ namespace Recursive
     {
         [SerializeField] private GameObject _actuator;
         [SerializeField] private GameObject _model;
+        [SerializeField] private bool _defaultState;
 
         private void OnEnable() => _actuator.GetComponent<IActuator>().Bind(SetState);
         private void OnDisable() => _actuator.GetComponent<IActuator>().Unbind(SetState);
@@ -21,7 +22,7 @@ namespace Recursive
         
         public void ResetState()
         {
-            _model.SetActive(true);
+            _model.SetActive(!_defaultState);
         }
 
         private void Open()

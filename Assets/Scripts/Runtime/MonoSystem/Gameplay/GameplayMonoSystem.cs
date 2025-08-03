@@ -11,18 +11,28 @@ namespace Recursive.MonoSystem
     {
         private Replayer _clonePrefab;
 
+        private Transform _levelDoors;
+
         private List<Replayer> _clones = new();
-        
+
+        private int _levelId = 0;
         private Level _level = null;
+        private List<Level> _levels = new();
         
         private Player.Controller _player = null;
 
         private void Start()
         {
+            _levelDoors = GameObject.Find("LevelDoors").transform;
+            for (int i = 0; i < _levelDoors.childCount; i++) _levelDoors.GetChild(i).gameObject.SetActive(false);
+            _player = FindAnyObjectByType<Player.Controller>();
             _clonePrefab = Resources.Load<Replayer>("Prefabs/Clone");
             GameManager.GetMonoSystem<IInputMonoSystem>().RestartAction.AddListener(Restart);
-            LoadLevel(FindAnyObjectByType<Level>());
-            _player = FindAnyObjectByType<Player.Controller>();
+            _levels = FindObjectsByType<Level>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID).Reverse().ToList();
+            _levels.ForEach(l => Debug.Log(l.name));
+            _levels.ForEach(l => l.gameObject.SetActive(false));
+            LoadLevel(_levels[0]);
+            Restart(true);
             
             GameManager.GetMonoSystem<IInputMonoSystem>().RightMouseAction.AddListener(DoRecord);
         }
@@ -43,23 +53,43 @@ namespace Recursive.MonoSystem
         public void LoadLevel(Level level)
         {
             _level = level;
+            _level.gameObject.SetActive(true);
+        }
+
+        public void NextLevel()
+        {
+            _levelDoors.GetChild(_levelId).gameObject.SetActive(true);
+            _levelId += 1;
+            _level.gameObject.SetActive(false);
+            if (_levelId >= _levels.Count) return;
+            LoadLevel(_levels[_levelId]);
+            RemoveClones();
+            GameManager.GetMonoSystem<IRecorderMonoSystem>().ClearAllSlots();
+            Restart(false);
         }
 
         public void RestartAndRecord()
         {
-            Restart();
+            GameManager.GetMonoSystem<IRecorderMonoSystem>().SetSelectedRecording(null);
+            Restart(true);
             _player.GetComponent<Recorder>().StartRecord();
         }
 
-        public void Restart()
+        private void RemoveClones()
+        {
+            _clones.Where(c => c).ForEach(c => Destroy(c.gameObject));
+            _clones.Clear();
+        }
+
+        public void Restart() => Restart(true);
+        public void Restart(bool movePlayer)
         {
             Debug.Log("Restart Level!");
             _level.Components.ForEach(c => c.ResetState());
-            _player.SetTransform(_level.StartPosition);
+            if (movePlayer) _player.SetTransform(_level.StartPosition);
             Recording[] recordings = GameManager.GetMonoSystem<IRecorderMonoSystem>().ActiveRecordings();
-            
-            _clones.Where(c => c).ForEach(c => Destroy(c.gameObject));
-            _clones.Clear();
+
+            RemoveClones();
 
             foreach (Recording rec in recordings)
             {

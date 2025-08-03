@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   _blockageCheckRadius: 0.01
   _groundedCheckRadius: 0.1
   _feet: {fileID: 6467807246913522984}

@@ -32,6 +32,25 @@ namespace Recursive
         {
             _onCount = 0;
             _state = false;
+            switch (_type)
+            {
+                case Type.Or:
+                    _state = false;
+                    break;
+                case Type.Nor:
+                    _state = true;
+                    break;
+                case Type.Xor:
+                    _state = false;
+                    break;
+                case Type.And:
+                    _state = false;
+                    break;
+                case Type.Nand:
+                    _state = true;
+                    break;
+                default: goto case Type.Or;
+            }
         }
 
         private void OnEnable()

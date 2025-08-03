@@ -8,5 +8,6 @@ namespace Recursive.MonoSystem
         public void LoadLevel(Level level);
         public void Restart();
         public void RestartAndRecord();
+        public void NextLevel();
     }
 }
