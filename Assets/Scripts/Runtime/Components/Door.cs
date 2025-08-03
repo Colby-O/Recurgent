@@ -10,15 +10,8 @@ namespace Recursive
         [SerializeField] private GameObject _actuator;
         [SerializeField] private GameObject _model;
 
-        private void OnEnable()
-        {
-            _actuator.GetComponent<IActuator>().Bind(SetState);
-        }
-        
-        private void OnDisable()
-        {
-            _actuator.GetComponent<IActuator>().Unbind(SetState);
-        }
+        private void OnEnable() => _actuator.GetComponent<IActuator>().Bind(SetState);
+        private void OnDisable() => _actuator.GetComponent<IActuator>().Unbind(SetState);
 
         private void SetState(bool state)
         {
