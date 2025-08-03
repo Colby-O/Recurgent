@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2856291436324301985}
   - component: {fileID: 8678894283776290479}
   - component: {fileID: 8111148728199692508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,8 @@ GameObject:
   - component: {fileID: 2047479444776665068}
   - component: {fileID: 7612347947776130033}
   - component: {fileID: 2964981835968957778}
-  m_Layer: 0
+  - component: {fileID: 7590063163202159259}
+  m_Layer: 6
   m_Name: Clone
   m_TagString: Interactor
   m_Icon: {fileID: 0}
@@ -233,6 +234,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f64c42060f0ba4b8d7a191a0c5257e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7590063163202159259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668474751830072716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e412d6e33f2eece4d82412c3fe32aea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostLayer:
+    serializedVersion: 2
+    m_Bits: 72
+  _blockageCheckRadius: 0.05
+  _groundedCheckRadius: 0.1
+  _feet: {fileID: 6467807246913522984}
+  _isFlying: 0
+  _flyingStartTime: 0
+  _lastPos: {x: 0, y: 0, z: 0}
+  _velY: 0
 --- !u!1 &6751571784137484747
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6467807246913522984}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

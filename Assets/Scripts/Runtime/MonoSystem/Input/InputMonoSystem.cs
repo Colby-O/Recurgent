@@ -15,11 +15,20 @@ namespace Recursive.MonoSystem
         private InputAction _interactAction;
         private InputAction _leftMouseAction;
         private InputAction _rightMouseAction;
+        private InputAction _slot1Action;
+        private InputAction _slot2Action;
+        private InputAction _slot3Action;
+        private InputAction _slot4Action;
 
         public UnityEvent JumpAction { get; private set; }
         public UnityEvent InteractCallback { get; private set; }
         public UnityEvent LeftMouseAction { get; private set; }
         public UnityEvent RightMouseAction { get; private set; }
+
+        public UnityEvent Slot1Action { get; private set; }
+        public UnityEvent Slot2Action { get; private set; }
+        public UnityEvent Slot3Action { get; private set; }
+        public UnityEvent Slot4Action { get; private set; }
 
         public Vector2 RawMovement { get; private set; }
         public Vector2 RawLook { get; private set; }
@@ -54,6 +63,26 @@ namespace Recursive.MonoSystem
             JumpAction.Invoke();
         }
 
+        private void HandleSlot1Action(InputAction.CallbackContext e)
+        {
+            Slot1Action.Invoke();
+        }
+
+        private void HandleSlot2Action(InputAction.CallbackContext e)
+        {
+            Slot2Action.Invoke();
+        }
+
+        private void HandleSlot3Action(InputAction.CallbackContext e)
+        {
+            Slot3Action.Invoke();
+        }
+        private void HandleSlot4Action(InputAction.CallbackContext e)
+        {
+            Slot4Action.Invoke();
+        }
+
+
         private void Awake()
         {
             if (!_input) _input = GetComponent<PlayerInput>();
@@ -62,6 +91,10 @@ namespace Recursive.MonoSystem
             InteractCallback = new UnityEvent();
             LeftMouseAction  = new UnityEvent();
             RightMouseAction = new UnityEvent();
+            Slot1Action      = new UnityEvent();
+            Slot2Action      = new UnityEvent();
+            Slot3Action      = new UnityEvent();
+            Slot4Action      = new UnityEvent();
 
             _moveAction       = _input.actions["Move"];
             _lookAction       = _input.actions["Look"];
@@ -69,6 +102,10 @@ namespace Recursive.MonoSystem
             _interactAction   = _input.actions["Interact"];
             _leftMouseAction  = _input.actions["LMouse"];
             _rightMouseAction = _input.actions["RMouse"];
+            _slot1Action      = _input.actions["Slot1"];
+            _slot2Action      = _input.actions["Slot2"];
+            _slot3Action      = _input.actions["Slot3"];
+            _slot4Action      = _input.actions["Slot4"];
 
             _moveAction.performed       += HandleMoveAction;
             _lookAction.performed       += HandleLookAction;
@@ -76,6 +113,11 @@ namespace Recursive.MonoSystem
             _interactAction.performed   += HandleInteractAction;
             _leftMouseAction.performed  += HandleLeftMouseAction;
             _rightMouseAction.performed += HandleRightMouseAction;
+            _slot1Action.performed      += HandleSlot1Action;
+            _slot2Action.performed      += HandleSlot2Action;
+            _slot3Action.performed      += HandleSlot3Action;
+            _slot4Action.performed      += HandleSlot4Action;
+
         }
 
         private void OnDestroy()
@@ -86,6 +128,10 @@ namespace Recursive.MonoSystem
             _interactAction.performed   -= HandleInteractAction;
             _leftMouseAction.performed  -= HandleLeftMouseAction;
             _rightMouseAction.performed -= HandleRightMouseAction;
+            _slot1Action.performed      -= HandleSlot1Action;
+            _slot2Action.performed      -= HandleSlot2Action;
+            _slot3Action.performed      -= HandleSlot3Action;
+            _slot4Action.performed      -= HandleSlot4Action;
         }
     }
 }

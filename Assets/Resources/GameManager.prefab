@@ -120,6 +120,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 4831391790117500936}
+--- !u!1 &6207621667897999110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7822120612279476397}
+  - component: {fileID: 2300401493937531518}
+  m_Layer: 0
+  m_Name: Recorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7822120612279476397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207621667897999110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7377806647755845956}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2300401493937531518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207621667897999110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13199bcadd22e9b4eb2b70137634b695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectedSlot: 0
 --- !u!1 &7368793074571512995
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +198,7 @@ Transform:
   - {fileID: 1148875053879713070}
   - {fileID: 3822235615560402897}
   - {fileID: 7803081082373806023}
+  - {fileID: 7822120612279476397}
   m_Father: {fileID: 1221539595083670426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7595372660671692866
@@ -332,10 +378,11 @@ MonoBehaviour:
   _debug: 0
   _verbose: 0
   _monoSystemHolder: {fileID: 7368793074571512995}
-  _uiSystem: {fileID: 692066139865360048}
+  _uiSystem: {fileID: 5541531184409057893}
   _animSystem: {fileID: 526419950687679176}
   _audioSystem: {fileID: 6021656965006246890}
   _inputSystem: {fileID: 2412625702210654780}
+  _recorderSystem: {fileID: 2300401493937531518}
 --- !u!1 &8099245422208538691
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12236868769378958}
-  - component: {fileID: 692066139865360048}
+  - component: {fileID: 5541531184409057893}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -557,7 +604,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7377806647755845956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &692066139865360048
+--- !u!114 &5541531184409057893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preserveUIAcrossScenes: 1
-  _startingView: 
+  _startingView: Recursive.UI.GameView, Assembly-CSharp
   _views: []
   _currentView: {fileID: 0}
   _hasInitialized: 0
