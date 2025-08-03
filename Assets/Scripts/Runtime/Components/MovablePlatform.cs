@@ -54,8 +54,16 @@ namespace Recursive
             _nextTarget = _path[_index + _direction];
         }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+            _currentTarget = _path[0];
+            _nextTarget = _path[1];
+        }
+        
+        public override void ResetState()
+        {
+            base.ResetState();
             _currentTarget = _path[0];
             _nextTarget = _path[1];
         }

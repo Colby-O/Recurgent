@@ -15,11 +15,13 @@ namespace Recursive.MonoSystem
         private InputAction _interactAction;
         private InputAction _leftMouseAction;
         private InputAction _rightMouseAction;
+        private InputAction _restartAction;
 
         public UnityEvent JumpAction { get; private set; }
         public UnityEvent InteractCallback { get; private set; }
         public UnityEvent LeftMouseAction { get; private set; }
         public UnityEvent RightMouseAction { get; private set; }
+        public UnityEvent RestartAction { get; private set; }
 
         public Vector2 RawMovement { get; private set; }
         public Vector2 RawLook { get; private set; }
@@ -48,6 +50,11 @@ namespace Recursive.MonoSystem
         {
             RightMouseAction.Invoke();
         }
+        
+        private void HandleRestartAction(InputAction.CallbackContext e)
+        {
+            RestartAction.Invoke();
+        }
 
         private void HandleJumpAction(InputAction.CallbackContext e)
         {
@@ -62,6 +69,7 @@ namespace Recursive.MonoSystem
             InteractCallback = new UnityEvent();
             LeftMouseAction  = new UnityEvent();
             RightMouseAction = new UnityEvent();
+            RestartAction = new UnityEvent();
 
             _moveAction       = _input.actions["Move"];
             _lookAction       = _input.actions["Look"];
@@ -69,6 +77,7 @@ namespace Recursive.MonoSystem
             _interactAction   = _input.actions["Interact"];
             _leftMouseAction  = _input.actions["LMouse"];
             _rightMouseAction = _input.actions["RMouse"];
+            _restartAction    = _input.actions["Restart"];
 
             _moveAction.performed       += HandleMoveAction;
             _lookAction.performed       += HandleLookAction;
@@ -76,6 +85,7 @@ namespace Recursive.MonoSystem
             _interactAction.performed   += HandleInteractAction;
             _leftMouseAction.performed  += HandleLeftMouseAction;
             _rightMouseAction.performed += HandleRightMouseAction;
+            _restartAction.performed    += HandleRestartAction;
         }
 
         private void OnDestroy()

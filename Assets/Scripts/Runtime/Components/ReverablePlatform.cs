@@ -85,9 +85,7 @@ namespace Recursive
 
         private void SwapTargets()
         {
-            Transform temp = _currentTarget;
-            _currentTarget = _nextTarget;
-            _nextTarget = temp;
+            (_currentTarget, _nextTarget) = (_nextTarget, _currentTarget);
         }
     }
 }

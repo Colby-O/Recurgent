@@ -17,6 +17,7 @@ namespace Recursive
         [SerializeField] private AnimationMonoSystem _animSystem;
         [SerializeField] private AudioMonoSystem _audioSystem;
         [SerializeField] private InputMonoSystem _inputSystem;
+        [SerializeField] private GameplayMonoSystem _gameplaySystem;
 
         private void AttachMonoSystems()
         {
@@ -24,6 +25,7 @@ namespace Recursive
             AddMonoSystem<AnimationMonoSystem, IAnimationMonoSystem>(_animSystem);
             AddMonoSystem<AudioMonoSystem, IAudioMonoSystem>(_audioSystem);
             AddMonoSystem<InputMonoSystem, IInputMonoSystem>(_inputSystem);
+            AddMonoSystem<GameplayMonoSystem, IGameplayMonoSystem>(_gameplaySystem);
         }
 
         public override string GetApplicationName()

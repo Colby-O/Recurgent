@@ -31,10 +31,12 @@ namespace Recursive.Player
         private float gravity = -9.81f;
 
         private IInputMonoSystem _input;
+
+        private Vector3 _groundPoint;
         
         private bool IsGrounded()
         {
-            bool isGrounded = Physics.SphereCast(_feet.position, _groundedCheckRadius, -transform.up, out RaycastHit hit, _groundedCheckDst, ~_groundedCheckIgnoreLayer);
+            bool isGrounded = Physics.CheckSphere(_feet.position, _groundedCheckRadius, ~_groundedCheckIgnoreLayer);
             return isGrounded;
         }
 
@@ -45,7 +47,8 @@ namespace Recursive.Player
 
         private void ProcessGravity()
         {
-            if (IsGrounded() && _velY < 0.0f) _velY = 0.0f;
+            bool isGrounded = IsGrounded();
+            if (isGrounded && _velY < 0.0f) _velY = 0.0f;
             else _velY += _settings.GravityMultiplier * gravity * Time.deltaTime;
 
             _movementSpeed.y = _velY;
@@ -99,6 +102,21 @@ namespace Recursive.Player
             ProcessGravity();
 
             _controller.Move(transform.TransformDirection(_movementSpeed * Time.deltaTime));
+        }
+
+        public void Move(Vector3 vec)
+        {
+            _controller.Move(vec);
+        }
+
+        public void SetTransform(Transform trans)
+        {
+            _controller.enabled = false;
+            transform.position = trans.position;
+            transform.rotation = trans.rotation;
+            _smoothedYRot = trans.eulerAngles.y;
+            _smoothedXRot = trans.eulerAngles.x;
+            _controller.enabled = true;
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Recursive
 {
-    public class Lever : MonoBehaviour, IActuator
+    public class Lever : MonoBehaviour, IActuator, Components.IComponent
     {
         private List<Action<bool>> _callbacks = new();
         private int _interactorsInside = 0;
@@ -48,6 +48,14 @@ namespace Recursive
             _callbacks.ForEach(c => c.Invoke(_state));
         }
         
+        public void ResetState()
+        {
+            _state = false;
+            _interactorsInside = 0;
+            _t = 0;
+            _model.rotation = _offRotation;
+        }
+        
         private void OnTriggerEnter(Collider col)
         {
             if (col.CompareTag("Interactor"))
@@ -61,8 +69,9 @@ namespace Recursive
         {
             if (col.CompareTag("Interactor"))
             {
-                _interactorsInside -= 1;
+                if (_interactorsInside > 0) _interactorsInside -= 1;
             }
         }
+
     }
 }

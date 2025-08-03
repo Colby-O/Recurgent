@@ -10,6 +10,7 @@ namespace Recursive.MonoSystem
         public UnityEvent InteractCallback { get; }
         public UnityEvent LeftMouseAction { get; }
         public UnityEvent RightMouseAction { get; }
+        public UnityEvent RestartAction { get; }
 
         public Vector2 RawMovement { get; }
         public Vector2 RawLook { get; }
