@@ -28,7 +28,11 @@ namespace Recursive.MonoSystem
             _player = FindAnyObjectByType<Player.Controller>();
             _clonePrefab = Resources.Load<Replayer>("Prefabs/Clone");
             GameManager.GetMonoSystem<IInputMonoSystem>().RestartAction.AddListener(Restart);
-            _levels = FindObjectsByType<Level>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID).Reverse().ToList();
+            Transform levelCont = GameObject.Find("Levels").transform;
+            for (int i = 0; i < levelCont.childCount; i++)
+            {
+                _levels.Add(levelCont.GetChild(i).GetComponent<Level>());
+            }
             _levels.ForEach(l => Debug.Log(l.name));
             _levels.ForEach(l => l.gameObject.SetActive(false));
             LoadLevel(_levels[0]);
