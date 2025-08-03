@@ -1,26 +1,25 @@
 using PlazmaGames.Core;
 using PlazmaGames.UI;
-using Recursive.MonoSystem;
 using Recursive.UI;
 using UnityEngine;
 
 namespace Recursive
 {
-    public class MainMenuView : View
+    public class PausedView : View
     {
-        [SerializeField] private EventButton _play;
+        [SerializeField] private EventButton _resume;
         [SerializeField] private EventButton _settings;
         [SerializeField] private EventButton _quit;
+
         [SerializeField] private GameObject _menuCamera;
+        [SerializeField] private GameObject _level1;
 
-        [SerializeField] private DialogueSO _startDialogue;
+        private bool _hideLevel = false;
 
-        private void Play()
+        public void Resume()
         {
             GameManager.GetMonoSystem<IUIMonoSystem>().Show<GameView>();
             RecursiveGameManager.IsPaused = false;
-            RecursiveGameManager.HasStarted = true;
-            GameManager.GetMonoSystem<IDialogueMonoSystem>().Load(_startDialogue);
             _menuCamera.SetActive(false);
         }
 
@@ -36,14 +35,22 @@ namespace Recursive
 
         public override void Init()
         {
-            _play.onPointerDown.AddListener(Play);
+            _resume.onPointerDown.AddListener(Resume);
             _settings.onPointerDown.AddListener(Settings);
             _quit.onPointerDown.AddListener(Quit);
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+            _level1.SetActive(!_hideLevel);
         }
 
         public override void Show()
         {
             base.Show();
+            _hideLevel = !_level1.activeSelf;
+            if (_hideLevel) _level1.SetActive(_hideLevel);
             RecursiveGameManager.IsPaused = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;

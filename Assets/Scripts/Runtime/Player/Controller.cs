@@ -46,7 +46,7 @@ namespace Recursive.Player
 
         private void Jump()
         {
-            if (GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
+            if (RecursiveGameManager.IsPaused || GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
 
             if (IsGrounded()) _velY = _settings.JumpForce;
         }
@@ -93,8 +93,6 @@ namespace Recursive.Player
 
         private void Awake()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             if (!_controller) _controller = GetComponent<CharacterController>();
             _input = GameManager.GetMonoSystem<IInputMonoSystem>();
 
@@ -103,6 +101,12 @@ namespace Recursive.Player
 
         private void Update()
         {
+            if (RecursiveGameManager.IsPaused)
+            {
+                _as.Stop();
+                return;
+            }
+
             ProcessLook();
             ProcessMovement();
             ProcessGravity();

@@ -10,6 +10,7 @@ namespace Recursive
     public class PressurePlate : MonoBehaviour, IActuator, Components.IComponent
     {
         [SerializeField] private List<MeshRenderer> _wires;
+        [SerializeField] private List<MeshRenderer> _wiresLive;
         [SerializeField] private AudioClip _onClip;
         [SerializeField] private AudioClip _offClip;
 
@@ -23,12 +24,14 @@ namespace Recursive
         {
             if (_onClip) GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_onClip, PlazmaGames.Audio.AudioType.Sfx, false, true);
             if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.cyan);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.red);
             _callbacks.ForEach(c => c.Invoke(true));
         }
         private void SetOff()
         {
             if (_offClip) GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_offClip, PlazmaGames.Audio.AudioType.Sfx, false, true);
             if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
             _callbacks.ForEach(c => c.Invoke(false));
         }
         
@@ -36,6 +39,7 @@ namespace Recursive
         {
             _interactorsInside = 0;
             if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
         }
 
         private void OnTriggerEnter(Collider col)
@@ -58,6 +62,7 @@ namespace Recursive
         private void Awake()
         {
             if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
         }
     }
 }

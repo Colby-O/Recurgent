@@ -432,7 +432,7 @@ MonoBehaviour:
   _recorderSystem: {fileID: 2300401493937531518}
   _gameplaySystem: {fileID: 6000931050187581948}
   _dialogueSystem: {fileID: 6664032657223321952}
-  _test: {fileID: 11400000, guid: f9690bb734c8a354fbc4d6dc51bf9d71, type: 2}
+  _cursor: {fileID: 2800000, guid: efdb163bb3d3ab240a5a9ad4a1fce2a6, type: 3}
 --- !u!1 &8099245422208538691
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +486,10 @@ MonoBehaviour:
   _musicSound: 0.5
   _musicSounds: []
   _ambientSounds: []
-  _sfxSounds: []
+  _sfxSounds:
+  - id: 0
+    name: UIClick
+    audio: {fileID: 8300000, guid: 6c9c8cb5c9ddd264e96d6e82b7c97703, type: 3}
   _musicSource: {fileID: 655985673145394246}
   _ambientSource: {fileID: 9048306220605279303}
   _sfxMainSource: {fileID: 3925360205368489490}
@@ -667,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preserveUIAcrossScenes: 1
-  _startingView: Recursive.UI.GameView, Assembly-CSharp
+  _startingView: Recursive.MainMenuView, Assembly-CSharp
   _views: []
   _currentView: {fileID: 0}
   _hasInitialized: 0

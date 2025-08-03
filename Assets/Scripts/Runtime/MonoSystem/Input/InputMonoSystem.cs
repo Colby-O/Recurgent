@@ -1,3 +1,6 @@
+using PlazmaGames.Core;
+using PlazmaGames.UI;
+using PlazmaGames.UI.Views;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -72,20 +75,24 @@ namespace Recursive.MonoSystem
 
         private void HandleSlot1Action(InputAction.CallbackContext e)
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording()) return;
             Slot1Action.Invoke();
         }
 
         private void HandleSlot2Action(InputAction.CallbackContext e)
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording()) return;
             Slot2Action.Invoke();
         }
 
         private void HandleSlot3Action(InputAction.CallbackContext e)
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording()) return;
             Slot3Action.Invoke();
         }
         private void HandleSlot4Action(InputAction.CallbackContext e)
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording()) return;
             Slot4Action.Invoke();
         }
 
@@ -142,6 +149,22 @@ namespace Recursive.MonoSystem
             _slot2Action.performed      -= HandleSlot2Action;
             _slot3Action.performed      -= HandleSlot3Action;
             _slot4Action.performed      -= HandleSlot4Action;
+        }
+
+        private void Update()
+        {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                if (
+                    !GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<PausedView>() &&
+                    !GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<SettingsView>() &&
+                    !GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<MainMenuView>()
+                ) GameManager.GetMonoSystem<IUIMonoSystem>().Show<PausedView>();
+                else if (
+                    !GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<MainMenuView>() &&
+                    RecursiveGameManager.HasStarted
+                ) GameManager.GetMonoSystem<IUIMonoSystem>().GetView<PausedView>().Resume();
+            }
         }
     }
 }

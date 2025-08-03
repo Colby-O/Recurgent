@@ -1,13 +1,20 @@
+using PlazmaGames.Audio;
+using PlazmaGames.Core;
+using Recursive.Components;
 using System;
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
-using Recursive.Components;
 using UnityEngine;
 
 namespace Recursive
 {
     public class Lever : MonoBehaviour, IActuator, Components.IComponent
     {
+        [SerializeField] private List<MeshRenderer> _wires;
+        [SerializeField] private List<MeshRenderer> _wiresLive;
+
+        [SerializeField] private AudioClip _onClip;
+        [SerializeField] private AudioClip _offClip;
+
         private List<Action<bool>> _callbacks = new();
         private int _interactorsInside = 0;
         private bool _state = false;
@@ -45,7 +52,21 @@ namespace Recursive
         private void Toggle()
         {
             _state = !_state;
-            _callbacks.ForEach(c => c.Invoke(_state));
+
+            if (_state)
+            {
+                if (_onClip) GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_onClip, PlazmaGames.Audio.AudioType.Sfx, false, true);
+                if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.cyan);
+                if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.red);
+            }
+            else
+            {
+                if (_offClip) GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_offClip, PlazmaGames.Audio.AudioType.Sfx, false, true);
+                if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+                if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
+            }
+
+                _callbacks.ForEach(c => c.Invoke(_state));
         }
         
         public void ResetState()
@@ -54,8 +75,17 @@ namespace Recursive
             _interactorsInside = 0;
             _t = 0;
             _model.rotation = _offRotation;
+
+            if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
         }
-        
+
+        private void Awake()
+        {
+            if (_wires != null) foreach (var w in _wires) w.material.SetColor("_BaseColor", Color.red);
+            if (_wiresLive != null) foreach (var w in _wiresLive) w.material.SetColor("_BaseColor", Color.cyan);
+        }
+
         private void OnTriggerEnter(Collider col)
         {
             if (col.CompareTag("Interactor"))

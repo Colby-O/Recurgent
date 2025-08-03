@@ -28,7 +28,9 @@ namespace Recursive.Player
 
 		private void Record()
 		{
-			if (!_isRecording) StartRecord();
+            if (RecursiveGameManager.IsPaused || GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
+
+            if (!_isRecording) StartRecord();
 			else EndRecord();
 		}
 
@@ -75,7 +77,7 @@ namespace Recursive.Player
 
         private void FixedUpdate()
 		{
-			if (_isRecording)
+            if (_isRecording)
 			{
 				_recording.AddFrame(new Frame(Time.time - _recordStartTime, transform.position, transform.rotation));
 			}

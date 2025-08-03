@@ -3,6 +3,7 @@ using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.UI;
 using Recursive.MonoSystem;
+using Recursive.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,9 +22,17 @@ namespace Recursive
         [SerializeField] private GameplayMonoSystem _gameplaySystem;
         [SerializeField] private DialogueMonoSystem _dialogueSystem;
 
-        [SerializeField] private DialogueSO _test;
+        [SerializeField] private Texture2D _cursor;
 
-        public static bool IsPaused => false;
+        public static bool IsPaused = true;
+        public static bool HasStarted = false;
+
+        public static Recorder Recorder { get; set; }
+
+        public static void UseCustomCursor()
+        {
+            if (Instance) Cursor.SetCursor(((RecursiveGameManager)Instance)._cursor, Vector2.zero, CursorMode.Auto);
+        }
 
         private void AttachMonoSystems()
         {
@@ -70,7 +79,7 @@ namespace Recursive
 
         private void Start()
         {
-            _dialogueSystem.Load(_test);
+            Recorder = FindAnyObjectByType<Recorder>();
         }
 
         private void OnEnable()

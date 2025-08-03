@@ -29,7 +29,8 @@ namespace Recursive.Player
 
         private void FixedUpdate()
         {
-            if (_done || _stopwatch.IsPaused()) return;
+            if (_done || _stopwatch.IsPaused() || RecursiveGameManager.IsPaused) return;
+
             _ptr += 1;
             if (_ptr + 1 >= _recording.FrameCount())
             {

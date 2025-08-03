@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using PlazmaGames.Attribute;
 using PlazmaGames.Core;
 using PlazmaGames.UI;
@@ -9,7 +8,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using static UnityEditor.FilePathAttribute;
 
 namespace Recursive.UI
 {
@@ -20,6 +18,7 @@ namespace Recursive.UI
         [SerializeField] private List<RecorderUISlot> _recorderSlots;
         [SerializeField] private GameObject _timer;
         [SerializeField] private TMP_Text _timerDisplay;
+        [SerializeField] private GameObject _holder;
 
         [Header("Dialogue")]
         [SerializeField] private GameObject _dialogueHolder;
@@ -272,6 +271,19 @@ namespace Recursive.UI
                     _as?.Stop();
                 }
             }
+        }
+
+        public override void Show()
+        {
+            base.Show();
+            _holder.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        public override void Hide()
+        {
+            _holder.gameObject.SetActive(false);
         }
 
         public override void Init()

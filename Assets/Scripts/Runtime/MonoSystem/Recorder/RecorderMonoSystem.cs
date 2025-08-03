@@ -46,7 +46,7 @@ namespace Recursive.MonoSystem
             for (int i = 0; i < NUMBER_OF_SLOTS; i++)
             {
                 _recordings[i] = null;
-                _gameView.SetSlotSaveState(_selectedSlot, false);
+                _gameView.SetSlotSaveState(i, false);
             }
             SelectSlot(0);
         }

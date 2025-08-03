@@ -76,16 +76,23 @@ namespace Recursive
             }
         }
 
+        private void Awake()
+        {
+            _isActivated = _initialState;
+        }
+
         protected void Update()
         {
-            if (!IsActivated()) return;
-            Vector3 dir = Vector3.Normalize(_nextTarget.position - _currentTarget.position);
-            if (_player)
-            {
-                _player.Move(dir * (_speed * Time.deltaTime));
-            }
+            if (!IsActivated() || RecursiveGameManager.IsPaused) return;
+
             if (_currentTarget && _nextTarget)
             {
+                Vector3 dir = Vector3.Normalize(_nextTarget.position - _currentTarget.position);
+                if (_player)
+                {
+                    _player.Move(dir * (_speed * Time.deltaTime));
+                }
+
                 _t += Time.deltaTime * _speed / (_nextTarget.position - _currentTarget.position).magnitude;
                 transform.position = Vector3.Lerp(_currentTarget.position, _nextTarget.position, _t);
 

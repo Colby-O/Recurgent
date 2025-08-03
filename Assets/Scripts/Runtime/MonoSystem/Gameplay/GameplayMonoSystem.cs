@@ -1,8 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using PlazmaGames.Core;
 using PlazmaGames.Core.Utils;
+using PlazmaGames.UI;
 using Recursive.Player;
+using Recursive.UI;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Recursive.MonoSystem
@@ -64,18 +66,27 @@ namespace Recursive.MonoSystem
 
         public void NextLevel()
         {
+            if (_levelId == 2)
+            {
+                GameManager.GetMonoSystem<IUIMonoSystem>().Show<EndView>();
+                return;
+            } 
+
             _levelDoors.GetChild(_levelId).gameObject.SetActive(true);
             _levelId += 1;
             _level.gameObject.SetActive(false);
             if (_levelId >= _levels.Count) return;
             LoadLevel(_levels[_levelId]);
             RemoveClones();
+            RecursiveGameManager.Recorder.EndRecord();
             GameManager.GetMonoSystem<IRecorderMonoSystem>().ClearAllSlots();
             Restart(false);
         }
 
         public void RestartAndRecord()
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording() || GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
+
             GameManager.GetMonoSystem<IRecorderMonoSystem>().SetSelectedRecording(null);
             Restart(true);
             _player.GetComponent<Recorder>().StartRecord();
@@ -90,6 +101,8 @@ namespace Recursive.MonoSystem
         public void Restart() => Restart(true);
         public void Restart(bool movePlayer)
         {
+            if (RecursiveGameManager.IsPaused || RecursiveGameManager.Recorder.IsRecording() || GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().IsShowingDialogue()) return;
+
             Debug.Log("Restart Level!");
             _level.Components.ForEach(c => c.ResetState());
             if (movePlayer) _player.SetTransform(_level.StartPosition);

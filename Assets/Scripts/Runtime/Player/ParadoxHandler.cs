@@ -34,6 +34,8 @@ namespace Recursive
 
         private void FixedUpdate()
         {
+            if (RecursiveGameManager.IsPaused) return;
+
             _velY = (transform.position.y - _lastPos.y) / Time.deltaTime;
 
             if (Mathf.Abs(_velY) <= 0.02f && IsFlying())
