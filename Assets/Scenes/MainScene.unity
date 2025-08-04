@@ -27327,7 +27327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actuator: {fileID: 1774488890}
   _model: {fileID: 1996152985}
-  _defaultState: 0
+  _defaultState: 1
   _onSolveClip: {fileID: 8300000, guid: 97b4d34b03528224ca44d6f39f779b13, type: 3}
 --- !u!1 &1794909355
 GameObject:

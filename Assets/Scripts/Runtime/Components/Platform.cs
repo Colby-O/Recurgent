@@ -29,7 +29,6 @@ namespace Recursive
 
         protected virtual void Start()
         {
-            _initialPosition = transform.position;
         }
 
         private void SetState(bool state)
@@ -76,9 +75,10 @@ namespace Recursive
             }
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _isActivated = _initialState;
+            _initialPosition = transform.position;
         }
 
         protected void Update()

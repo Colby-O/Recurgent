@@ -38,6 +38,7 @@ namespace Recursive.MonoSystem
                 _levels.Add(levelCont.GetChild(i).GetComponent<Level>());
             }
             _levels.ForEach(l => Debug.Log(l.name));
+            _levels.ForEach(l => l.Initialize());
             _levels.ForEach(l => l.gameObject.SetActive(false));
             LoadLevel(_levels[0]);
             Restart(true);

@@ -9,7 +9,7 @@ namespace Recursive
         public List<Components.IComponent> Components = new();
         public Transform StartPosition;
 
-        private void Start()
+        public void Initialize()
         {
             Components = GetComponentsInChildren<Components.IComponent>().ToList();
         }
